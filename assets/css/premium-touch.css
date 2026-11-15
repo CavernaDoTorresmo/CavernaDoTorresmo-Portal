@@ -1,0 +1,45 @@
+/* Caverna do Torresmo | Polimento visual v8: somente laterais + OBS.
+   O CSS do portal original v6 permanece intacto. */
+/* Neon art-wall gutters using the approved dense collage. The site content is untouched. */
+.site-shell{position:relative;z-index:1}
+.neon-margin{position:fixed;z-index:0;top:0;bottom:0;pointer-events:none;
+  width:max(0px, calc((100vw - 1620px) / 2));overflow:hidden;
+  isolation:isolate}
+.neon-margin.left{left:0}
+.neon-margin.right{right:0}
+.neon-margin::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background-image:url('../images/neon-vice-city-mural-continua.webp');
+  /* One full-height mural per gutter: no repeated tiles or join lines. */
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:50% 50%;
+  opacity:1;
+  filter:saturate(1.08) drop-shadow(0 0 12px rgba(255,39,180,.18))}
+/* Use different sections of the same illustration on the left and right. */
+.neon-margin.left::before{background-position:43% center}
+.neon-margin.right::before{background-position:57% center}
+/* Fine gradient at each side creates a polished transition into the dashboard. */
+.neon-margin::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(90deg,rgba(9,7,25,.14),transparent 15%,transparent 83%,rgba(8,9,21,.25))}
+@media(max-width:1879px){.neon-margin{display:none}}
+@media(prefers-reduced-motion:reduce){.neon-margin::before{animation:none!important}}
+
+/* Live sign: subtle professional neon-tube flicker, rather than flashing the entire screen. */
+.obs-live-marquee{position:relative;display:inline-flex;align-items:center;gap:12px;
+ margin:0 auto 15px;padding:10px 19px;
+ border-radius:9px;border:1.5px solid #ff81d4;
+ background:linear-gradient(120deg,rgba(23,9,40,.88),rgba(67,14,63,.80));
+ color:#ffeafa;font:italic 900 clamp(15px,1.65vw,28px)/1.05 var(--display);
+ letter-spacing:.09em;text-transform:uppercase;text-shadow:0 0 10px rgba(255,78,185,.7);
+ box-shadow:inset 0 0 18px rgba(255,49,168,.13),0 0 9px rgba(255,49,168,.28),0 0 30px rgba(255,49,168,.18);
+ animation:neon-electric 10s linear infinite}
+.obs-live-marquee::before{content:'';position:absolute;inset:4px;border:1px solid rgba(255,181,223,.2);border-radius:5px;pointer-events:none}
+.obs-live-led{width:10px;height:10px;border-radius:50%;flex:none;background:#ff247d;box-shadow:0 0 9px #ff247d,0 0 19px #ff247d;
+ animation:led-breathe 2.4s ease-in-out infinite}
+@keyframes neon-electric{0%,16%,16.6%,17.1%,17.6%,18%,73%,73.4%,74%,100%{opacity:1;text-shadow:0 0 12px #ff70c9,0 0 26px #ff44a79a}
+ 16.3%,17.4%,73.2%{opacity:.75;text-shadow:0 0 3px #ff70c9}}
+@keyframes led-breathe{50%{opacity:.63;box-shadow:0 0 6px #ff247d,0 0 12px #ff247d}}
+/* Preserve the calendar, poster and central timer as originally designed. */
+.obs-center{gap:0}
+@media (max-width:580px){.obs-live-marquee{font-size:12px;padding:9px 12px;margin-bottom:8px;gap:7px}.obs-live-led{width:7px;height:7px}}
+@media(prefers-reduced-motion:reduce){.neon-margin img,.obs-live-marquee,.obs-live-led{animation:none!important}}
